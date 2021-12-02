@@ -26,41 +26,16 @@ func main() {
 
 	start := time.Now()
 	wg.Add(5)
-	go func() {
-		for i := 0; i < 2000; i++ {
-			p := getPrime(maxPrime) // add a new prime
-			primes = append(primes, p)
-		}
-		wg.Done()
-	}()
-	go func() {
-		for i := 0; i < 2000; i++ {
-			p := getPrime(maxPrime) // add a new prime
-			primes = append(primes, p)
-		}
-		wg.Done()
-	}()
-	go func() {
-		for i := 0; i < 2000; i++ {
-			p := getPrime(maxPrime) // add a new prime
-			primes = append(primes, p)
-		}
-		wg.Done()
-	}()
-	go func() {
-		for i := 0; i < 2000; i++ {
-			p := getPrime(maxPrime) // add a new prime
-			primes = append(primes, p)
-		}
-		wg.Done()
-	}()
-	go func() {
-		for i := 0; i < 2000; i++ {
-			p := getPrime(maxPrime) // add a new prime
-			primes = append(primes, p)
-		}
-		wg.Done()
-	}()
+
+	for i := 0; i < 5; i++ {
+		go func(mxValue int64) {
+			for i := 0; i < 2000; i++ {
+				p := getPrime(mxValue) // add a new prime
+				primes = append(primes, p)
+			}
+			wg.Done()
+		}(maxPrime)
+	}
 
 	wg.Wait()
 	end := time.Now()
