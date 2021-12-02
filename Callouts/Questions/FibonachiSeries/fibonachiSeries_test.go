@@ -14,7 +14,7 @@ func TestFib(t *testing.T) {
 		{"successfully calculated fibonachi number ", 5, 5},
 		{"successfyyl calculated fibnachi number", 17, 1597},
 		{"successfyyl calculated 50 fibnachi number", 50, 12586269025},
-		{"successfyyl calculated 0 fibnachi number", 0, 12586269025},
+		{"successfyyl calculated 0 fibnachi number", 0, 0},
 	}
 
 	for _, testCase := range testCases {
