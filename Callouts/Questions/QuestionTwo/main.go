@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+//// New Banch
 func clearTerminal() {
 	//// This will clear terminal's previous output
 	cmd := exec.Command("cmd", "/c", "cls")

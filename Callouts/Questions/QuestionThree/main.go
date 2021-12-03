@@ -10,6 +10,8 @@ import (
 	"time"
 )
 
+
+//// For New Branch
 func clearTerminal() {
 	//// This will clear terminal's previous output
 	cmd := exec.Command("cmd", "/c", "cls")
@@ -26,7 +28,10 @@ func main() {
 
 	start := time.Now()
 	wg.Add(5)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 16f7599609e5f182aa688b25fb28a6d0783a5aa6
 	for i := 0; i < 5; i++ {
 		go func(mxValue int64) {
 			for i := 0; i < 2000; i++ {

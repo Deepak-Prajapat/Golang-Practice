@@ -12,6 +12,8 @@ func clearTerminal() {
 	cmd.Stdout = os.Stdout
 	cmd.Run()
 }
+
+//// For Branch
 func main() {
 	clearTerminal()
 	fmt.Println("We are starting out program")
