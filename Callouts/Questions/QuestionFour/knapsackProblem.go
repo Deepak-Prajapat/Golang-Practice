@@ -2,18 +2,9 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"os/exec"
 )
 
-func clearTerminal() {
-	//// This will clear terminal's previous output
-	cmd := exec.Command("cmd", "/c", "cls")
-	cmd.Stdout = os.Stdout
-	cmd.Run()
-}
 func main() {
-	clearTerminal()
 	var itemCount int = 4
 	var profit [5]int = [5]int{0, 1, 6, 10, 15}
 	var weight [5]int = [5]int{0, 4, 1, 3, 5}
@@ -27,7 +18,7 @@ func main() {
 			if i == 0 || j == 0 {
 				table[i][j] = 0
 			} else if weight[i] <= j {
-				var values []int = []int{profit[i] + table[i-1][j-weight[i]], table[i-1][j]}//// Formula to find all expected values
+				var values []int = []int{profit[i] + table[i-1][j-weight[i]], table[i-1][j]} //// Formula to find all expected values
 				table[i][j] = findMax(values)
 			} else {
 				table[i][j] = table[i-1][j]

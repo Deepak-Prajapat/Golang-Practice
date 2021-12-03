@@ -1,20 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"os"
-	"os/exec"
-)
-
 type Game struct {
 	Name  string
 	Class string
 }
 
-func clearTerminal() {
+/* func clearTerminal() {
 	cmd := exec.Command("cmd", "/c", "cls")
 	cmd.Stdout = os.Stdout
-	
+
 	cmd.Run()
 }
 func main() {
@@ -25,3 +19,4 @@ func main() {
 	gameArray = append(gameArray, &Game{Name:"Deepak", Class: "BCA"})
 	fmt.Println("gameArray", gameArray)
 }
+*/
