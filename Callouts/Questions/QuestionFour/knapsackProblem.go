@@ -1,5 +1,6 @@
 package main
 
+//// This comment is For branch stages
 import (
 	"fmt"
 	"os"
@@ -27,7 +28,7 @@ func main() {
 			if i == 0 || j == 0 {
 				table[i][j] = 0
 			} else if weight[i] <= j {
-				var values []int = []int{profit[i] + table[i-1][j-weight[i]], table[i-1][j]}//// Formula to find all expected values
+				var values []int = []int{profit[i] + table[i-1][j-weight[i]], table[i-1][j]} //// Formula to find all expected values
 				table[i][j] = findMax(values)
 			} else {
 				table[i][j] = table[i-1][j]
