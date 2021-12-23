@@ -3,8 +3,6 @@ package crud
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"school/pkg/dbcon"
@@ -71,27 +69,13 @@ func TestGetStudentById(t *testing.T) {
 
 			GetStudentById(rec, req)
 			res := rec.Result()
-
-			b, err := ioutil.ReadAll(res.Body)
-			if err != nil {
-				t.Fatalf("Cound not read response: %v", err)
-			}
-
 			if tc.ID == "24" {
 				var student2 dbcon.Student
-				err = json.Unmarshal([]byte(b), &student2)
-				if err != nil {
-					fmt.Println("error", err.Error())
-					panic(err)
-				}
+				json.NewDecoder(res.Body).Decode(&student2)
 				assert.Equal(t, tc.expectedStu, student2)
 			} else {
 				var errRes ErrorJson
-				err = json.Unmarshal([]byte(b), &errRes)
-				if err != nil {
-					fmt.Println("error", err.Error())
-					panic(err)
-				}
+				json.NewDecoder(res.Body).Decode(&errRes)
 				assert.Equal(t, tc.err, errRes)
 			}
 		})
