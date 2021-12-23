@@ -6,41 +6,20 @@ import (
 	"math/rand"
 	"os"
 	"os/exec"
-	"sync"
 	"time"
 )
 
-func clearTerminal() {
-	//// This will clear terminal's previous output
-	cmd := exec.Command("cmd", "/c", "cls")
-	cmd.Stdout = os.Stdout
-	cmd.Run()
-}
+// returns true if number is prime func
+func isPrime(v int64) bool {
+	sq := int64(math.Sqrt(float64(v))) + 1
 
-func main() {
-	clearTerminal()
-
-	var wg sync.WaitGroup
-	var primes []int64              // slice of prime numbers
-	const maxPrime int64 = 10000000 // max value for primes
-
-	start := time.Now()
-	wg.Add(5)
-
-	for i := 0; i < 5; i++ {
-		go func(mxValue int64) {
-			for i := 0; i < 2000; i++ {
-				p := getPrime(mxValue) // add a new prime
-				primes = append(primes, p)
-			}
-			wg.Done()
-		}(maxPrime)
+	var i int64
+	for i = 2; i < sq; i++ {
+		if v%i == 0 {
+			return false
+		}
 	}
-
-	wg.Wait()
-	end := time.Now()
-
-	fmt.Println("Taken time:", end.Sub(start))
+	return true
 }
 
 // get a random prime number between 1 and maxP
@@ -54,14 +33,31 @@ func getPrime(maxP int64) int64 {
 	}
 	return 1 // just in case
 }
+func main() {
 
-func isPrime(v int64) bool {
-	sq := int64(math.Sqrt(float64(v))) + 1
-	var i int64
-	for i = 2; i < sq; i++ {
-		if v%i == 0 {
-			return false
-		}
+	channel := make(chan int64)
+	const maxPrime int64 = 10000000 // max value for primes
+	start := time.Now()
+	for i := 0; i < 5; i++ {
+		go func(maxPrime int64, c chan int64) {
+			for i := 0; i < 2000; i++ {
+				c <- getPrime(maxPrime)
+			}
+		}(maxPrime, channel)
 	}
-	return true
+	var primes []int64
+	for i := 0; i < 10000; i++ {
+		primes = append(primes, <-channel)
+	}
+	end := time.Now()
+
+	fmt.Println("End of program.", end.Sub(start))
+	fmt.Println("len", len(primes))
+}
+
+//// This init will clear terminal's previous output on before main loads
+func init() {
+	cmd := exec.Command("cmd", "/c", "cls")
+	cmd.Stdout = os.Stdout
+	cmd.Run()
 }
