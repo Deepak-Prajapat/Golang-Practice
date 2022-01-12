@@ -1,2 +1,4 @@
-
-API/API.exe
+main/go.mod
+main/main.go
+.vscode/settings.json
+main/go.sum
