@@ -1242,3 +1242,88 @@ func TestNopCloser(t *testing.T) {
 		})
 	}
 }
+
+func TestToInt(t *testing.T) {
+	type args struct {
+		input interface{}
+	}
+	type want struct {
+		output int
+	}
+
+	testCases := []struct {
+		name string
+		args args
+		want want
+	}{
+		{
+			name: "int in the type of interface",
+			args: args{
+				input: 45,
+			},
+			want: want{
+				output: 45,
+			},
+		},
+		{
+			name: "nil in the type of interface",
+			args: args{
+				input: nil,
+			},
+			want: want{
+				output: 0,
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			output := ToInt(tc.args.input)
+			assert.Equal(t, tc.want.output, output)
+			assert.Equal(t, fmt.Sprintf("%T", tc.want.output), "int")
+		})
+	}
+}
+
+func TestFloat64(t *testing.T) {
+	type args struct {
+		v interface{}
+	}
+	type want struct {
+		output float64
+	}
+
+	testCases := []struct {
+		name string
+		args args
+		want want
+	}{
+		{
+			name: "float64 type value in interface",
+			args: args{
+				v: 52.5,
+			},
+			want: want{
+				output: 52.5,
+			},
+		},
+		{
+			name: "nil in the type of interface",
+			args: args{
+				v: nil,
+			},
+			want: want{
+				output: 0,
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			output := Float64(tc.args.v)
+			assert.Equal(t, tc.want.output, output)
+			assert.Equal(t, fmt.Sprintf("%T", tc.want.output), "float64")
+			assert.NotNil(t, output)
+		})
+	}
+}
