@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"reflect"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -116,7 +115,7 @@ func TestSplit(t *testing.T) {
 	}{
 
 		{
-			name: "hello world",
+			name: "split two words with space",
 			args: args{
 				text: "hello world",
 				char: " ",
@@ -127,7 +126,7 @@ func TestSplit(t *testing.T) {
 			},
 		},
 		{
-			name: "three words",
+			name: "split three words with space",
 			args: args{
 				text: "let it be",
 				char: " ",
@@ -138,7 +137,7 @@ func TestSplit(t *testing.T) {
 			},
 		},
 		{
-			name: "Blank text",
+			name: "Empty string",
 			args: args{
 				text: "",
 				char: " ",
@@ -149,7 +148,7 @@ func TestSplit(t *testing.T) {
 			},
 		},
 		{
-			name: "Blank char",
+			name: "empty char",
 			args: args{
 				text: "hey mate",
 				char: "",
@@ -857,8 +856,8 @@ func TestFloat642Int(t *testing.T) {
 func TestMarshal(t *testing.T) {
 
 	type tempStruct struct {
-		Name string
-		Fees int
+		Name string `json:",omitempty"`
+		Fees int    `json:",omitempty"`
 	}
 
 	type args struct {
@@ -882,7 +881,27 @@ func TestMarshal(t *testing.T) {
 				},
 			},
 			want: want{
-				output: []byte("{\"Name\":\"Raghav\",\"Fees\":5000}"),
+				output: []byte(`{"Name":"Raghav","Fees":5000}`),
+			},
+		},
+		{
+			name: "struct with omitempty json",
+			args: args{
+				strct: tempStruct{
+					Name: "Tushar",
+				},
+			},
+			want: want{
+				output: []byte(`{"Name":"Tushar"}`),
+			},
+		},
+		{
+			name: "empty struct",
+			args: args{
+				strct: tempStruct{},
+			},
+			want: want{
+				output: []byte(`{}`),
 			},
 		},
 	}
@@ -902,28 +921,38 @@ func TestUnmarshal(t *testing.T) {
 		Fees int
 	}
 
-	var v tempStruct
-
 	type args struct {
 		jsn []byte
+	}
+
+	type want struct {
+		output interface{}
 	}
 
 	testCases := []struct {
 		name string
 		args args
+		want want
 	}{
 		{
 			name: "correct json in byte form",
 			args: args{
-				jsn: []byte("{\"Name\":\"Raghav\",\"Fees\":5000}"),
+				jsn: []byte(`{"Name":"Raghav","Fees":5000}`),
+			},
+			want: want{
+				output: &tempStruct{
+					Name: "Raghav",
+					Fees: 5000,
+				},
 			},
 		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			var v tempStruct
 			output := Unmarshal(tc.args.jsn, &v)
-			assert.Equal(t, &v, output)
+			assert.Equal(t, tc.want.output, output)
 		})
 	}
 }
@@ -1067,14 +1096,16 @@ func TestInt64(t *testing.T) {
 }
 
 func TestJSON2Map(t *testing.T) {
-	m := make(map[string]interface{})
+
 	jsn := struct {
-		Name string
-		KD   int
+		Name interface{}
+		KD   interface{}
 	}{
 		Name: "Deepak",
 		KD:   12,
 	}
+
+	//// Get raw message
 	jsnByte, _ := json.Marshal(jsn)
 	jsnRaw := json.RawMessage(jsnByte)
 
@@ -1084,9 +1115,6 @@ func TestJSON2Map(t *testing.T) {
 	type want struct {
 		output map[string]interface{}
 	}
-
-	m["KD"] = 12
-	m["Name"] = "Deepak"
 
 	testCases := []struct {
 		name string
@@ -1108,7 +1136,10 @@ func TestJSON2Map(t *testing.T) {
 				rawMessage: jsnRaw,
 			},
 			want: want{
-				output: m,
+				output: map[string]interface{}{
+					"Name": "Deepak",
+					"KD":   float64(12),
+				},
 			},
 		},
 	}
@@ -1116,9 +1147,9 @@ func TestJSON2Map(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			output := JSON2Map(tc.args.rawMessage)
-			// assert.Equal(t, tc.want.output, output)
-			// assert.EqualValues(t, tc.want.output, output)
-			reflect.DeepEqual(tc.want.output, output)
+			assert.Equal(t, tc.want.output, output)
+			assert.Equal(t, tc.want.output["KD"], output["KD"])
+			assert.Equal(t, tc.want.output["Name"], output["Name"])
 		})
 	}
 }
