@@ -1173,9 +1173,11 @@ func TestUUID(t *testing.T) {
 
 func TestReadAll(t *testing.T) {
 
-	jsonBodyForRequist := string(`{"Name" : "Heymarket","Fees" : 123,}`)
+	jsonBodyForRequest := string(`{"Name" : "Heymarket","Fees" : 123,}`)
 
-	closer := NopCloser([]byte(jsonBodyForRequist))
+	// To get io.ReadCloser of jsonBodyForRequest
+	closer := NopCloser([]byte(jsonBodyForRequest))
+
 	type args struct {
 		req io.ReadCloser
 	}
