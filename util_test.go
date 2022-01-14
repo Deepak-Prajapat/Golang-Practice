@@ -196,7 +196,7 @@ func TestOrigin(t *testing.T) {
 		want want
 	}{
 		{
-			name: "whatsapp",
+			name: "text that have whatsapp prefix",
 			args: args{
 				text: "whatsapp:hello",
 			},
@@ -205,7 +205,7 @@ func TestOrigin(t *testing.T) {
 			},
 		},
 		{
-			name: "line",
+			name: "line prefix",
 			args: args{
 				text: "line:hello",
 			},
@@ -214,7 +214,7 @@ func TestOrigin(t *testing.T) {
 			},
 		},
 		{
-			name: "gmb",
+			name: "gmb prefix",
 			args: args{
 				text: "gmb:hello",
 			},
@@ -223,7 +223,7 @@ func TestOrigin(t *testing.T) {
 			},
 		},
 		{
-			name: "fb",
+			name: "fb prefix",
 			args: args{
 				text: "fb:hello",
 			},
@@ -232,7 +232,7 @@ func TestOrigin(t *testing.T) {
 			},
 		},
 		{
-			name: "abc",
+			name: "abc prefix",
 			args: args{
 				text: "abc:hello",
 			},
@@ -241,7 +241,7 @@ func TestOrigin(t *testing.T) {
 			},
 		},
 		{
-			name: "Call For Heymarket",
+			name: "hm prefix that returns Heymarket",
 			args: args{
 				text: "hm:hello",
 			},
@@ -250,7 +250,7 @@ func TestOrigin(t *testing.T) {
 			},
 		},
 		{
-			name: "Call For Facebook",
+			name: "fb prefix",
 			args: args{
 				text: "fb:hello",
 			},
@@ -259,7 +259,7 @@ func TestOrigin(t *testing.T) {
 			},
 		},
 		{
-			name: "Not Available Value",
+			name: "for default value, prefix not available",
 			args: args{
 				text: "hii:hello",
 			},
@@ -290,7 +290,7 @@ func TestShowPhone(t *testing.T) {
 		want want
 	}{
 		{
-			name: "Heymarket",
+			name: "hm prefix",
 			args: args{
 				text: "hm:random string",
 			},
@@ -299,7 +299,7 @@ func TestShowPhone(t *testing.T) {
 			},
 		},
 		{
-			name: "Apple Business Chat",
+			name: "abc prefix",
 			args: args{
 				text: "abc:random string",
 			},
@@ -308,12 +308,39 @@ func TestShowPhone(t *testing.T) {
 			},
 		},
 		{
-			name: "Test for Whatsapp",
+			name: "whatsapp prefix",
 			args: args{
 				text: "whatsapp:random string",
 			},
 			want: want{
 				output: true,
+			},
+		},
+		{
+			name: "fb prefix",
+			args: args{
+				text: "fb:text",
+			},
+			want: want{
+				output: false,
+			},
+		},
+		{
+			name: "gmb prefix",
+			args: args{
+				text: "gmb:text",
+			},
+			want: want{
+				output: false,
+			},
+		},
+		{
+			name: "line prefix",
+			args: args{
+				text: "line:text",
+			},
+			want: want{
+				output: false,
 			},
 		},
 	}
@@ -343,7 +370,7 @@ func TestGetStringInBetween(t *testing.T) {
 		want want
 	}{
 		{
-			name: "String Between Characters",
+			name: "string between characters",
 			args: args{
 				str:   "Heymarket",
 				start: "m",
@@ -355,7 +382,7 @@ func TestGetStringInBetween(t *testing.T) {
 			},
 		},
 		{
-			name: "String Between Words",
+			name: "string between words",
 			args: args{
 				str:   "Heymarket is a SMS Service",
 				start: "Heymarket",
@@ -367,7 +394,7 @@ func TestGetStringInBetween(t *testing.T) {
 			},
 		},
 		{
-			name: "Start Not Found",
+			name: "when start(string) is not present in string",
 			args: args{
 				str:   "Heymarket is a SMS Service",
 				start: "shopify",
@@ -379,7 +406,7 @@ func TestGetStringInBetween(t *testing.T) {
 			},
 		},
 		{
-			name: "End Not Found",
+			name: "when end(string) is not present in string",
 			args: args{
 				str:   "Heymarket",
 				start: "H",
@@ -413,7 +440,7 @@ func TestShopifyMessage(t *testing.T) {
 		want want
 	}{
 		{
-			name: "Sent Hello Message",
+			name: "a string in input",
 			args: args{
 				msg: "Hello",
 			},
@@ -422,7 +449,7 @@ func TestShopifyMessage(t *testing.T) {
 			},
 		},
 		{
-			name: "Sent Blank String",
+			name: "blank string in input",
 			args: args{
 				msg: "",
 			},
@@ -431,7 +458,7 @@ func TestShopifyMessage(t *testing.T) {
 			},
 		},
 		{
-			name: "Sent String Of Numbers",
+			name: "string contain numbers",
 			args: args{
 				msg: "123456",
 			},
@@ -517,7 +544,7 @@ func TestCleanPhone(t *testing.T) {
 		want want
 	}{
 		{
-			name: "Blank",
+			name: "for blank string in phone number input",
 			args: args{
 				phNo: "",
 			},
@@ -526,7 +553,7 @@ func TestCleanPhone(t *testing.T) {
 			},
 		},
 		{
-			name: "For Nil",
+			name: "nil in input",
 			args: args{
 				phNo: nil,
 			},
@@ -535,7 +562,7 @@ func TestCleanPhone(t *testing.T) {
 			},
 		},
 		{
-			name: "With brackets",
+			name: "phone number under brackets()",
 			args: args{
 				phNo: "(1234567890)",
 			},
@@ -545,7 +572,7 @@ func TestCleanPhone(t *testing.T) {
 		},
 
 		{
-			name: "With + in starting",
+			name: "with + in starting",
 			args: args{
 				phNo: "+1234567890",
 			},
@@ -554,7 +581,7 @@ func TestCleanPhone(t *testing.T) {
 			},
 		},
 		{
-			name: "With - between country code and numbers",
+			name: "with - between country code and numbers",
 			args: args{
 				phNo: "91-1234567890",
 			},
@@ -595,7 +622,7 @@ func TestIsBlank(t *testing.T) {
 		want want
 	}{
 		{
-			name: "For Empty String",
+			name: "check for a blank string",
 			args: args{
 				param: "",
 			},
@@ -604,7 +631,7 @@ func TestIsBlank(t *testing.T) {
 			},
 		},
 		{
-			name: "For String",
+			name: "hello message in string",
 			args: args{
 				param: "Hello",
 			},
@@ -613,9 +640,27 @@ func TestIsBlank(t *testing.T) {
 			},
 		},
 		{
-			name: "For Nil",
+			name: "pass nil input",
 			args: args{
 				param: nil,
+			},
+			want: want{
+				isBlank: true,
+			},
+		},
+		{
+			name: "pass numbers input",
+			args: args{
+				param: 987,
+			},
+			want: want{
+				isBlank: false,
+			},
+		},
+		{
+			name: "pass 0 in input",
+			args: args{
+				param: 0,
 			},
 			want: want{
 				isBlank: true,
@@ -645,7 +690,7 @@ func TestPhoneValid(t *testing.T) {
 		want want
 	}{
 		{
-			name: "For Nil Input",
+			name: "nil in input",
 			args: args{
 				v: nil,
 			},
@@ -654,7 +699,7 @@ func TestPhoneValid(t *testing.T) {
 			},
 		},
 		{
-			name: "For A Blank String",
+			name: "empty string in input",
 			args: args{
 				v: "",
 			},
@@ -713,7 +758,7 @@ func TestE164Phone(t *testing.T) {
 		want want
 	}{
 		{
-			name: "For Blank String",
+			name: "blank string in input",
 			args: args{
 				v: "",
 			},
@@ -722,7 +767,7 @@ func TestE164Phone(t *testing.T) {
 			},
 		},
 		{
-			name: "For Less Then 11 Digit",
+			name: "for less then 11 digit",
 			args: args{
 				v: "321654987",
 			},
@@ -731,7 +776,7 @@ func TestE164Phone(t *testing.T) {
 			},
 		},
 		{
-			name: "For More Then 11 Digit",
+			name: "for more then 11 digit",
 			args: args{
 				v: "321654987321",
 			},
@@ -740,7 +785,7 @@ func TestE164Phone(t *testing.T) {
 			},
 		},
 		{
-			name: "For Nil Input",
+			name: "nil in input",
 			args: args{
 				v: nil,
 			},
@@ -749,7 +794,7 @@ func TestE164Phone(t *testing.T) {
 			},
 		},
 		{
-			name: "Without Country Code",
+			name: "without Country Code",
 			args: args{
 				v: "9876543210",
 			},
@@ -758,7 +803,7 @@ func TestE164Phone(t *testing.T) {
 			},
 		},
 		{
-			name: "Wit Country Code",
+			name: "with country code",
 			args: args{
 				v: "19876543210",
 			},
@@ -802,7 +847,7 @@ func TestFloat642Int(t *testing.T) {
 			},
 		},
 		{
-			name: "2nd Float64 to Int",
+			name: "2nd test Float64 to Int",
 			args: args{
 				Value: 90.1,
 			},
@@ -812,7 +857,7 @@ func TestFloat642Int(t *testing.T) {
 			},
 		},
 		{
-			name: "Negative Number",
+			name: "negative value",
 			args: args{
 				Value: -1540.90,
 			},
@@ -822,7 +867,7 @@ func TestFloat642Int(t *testing.T) {
 			},
 		},
 		{
-			name: "Pass Blank",
+			name: "blank string in input",
 			args: args{
 				Value: "",
 			},
@@ -971,7 +1016,7 @@ func TestToString(t *testing.T) {
 		want want
 	}{
 		{
-			name: "Nil",
+			name: "for nil input",
 			args: args{
 				value: nil,
 			},
@@ -981,7 +1026,7 @@ func TestToString(t *testing.T) {
 			},
 		},
 		{
-			name: "Blank String",
+			name: "blank string",
 			args: args{
 				value: "",
 			},
@@ -991,7 +1036,7 @@ func TestToString(t *testing.T) {
 			},
 		},
 		{
-			name: "Int to string",
+			name: "int to string",
 			args: args{
 				value: 9,
 			},
@@ -1001,7 +1046,7 @@ func TestToString(t *testing.T) {
 			},
 		},
 		{
-			name: "Float to string",
+			name: "float value to string",
 			args: args{
 				value: 9.2,
 			},
@@ -1011,7 +1056,7 @@ func TestToString(t *testing.T) {
 			},
 		},
 		{
-			name: "Struct To String",
+			name: "struct to string",
 			args: args{
 				value: struct {
 					Name string
@@ -1096,18 +1141,6 @@ func TestInt64(t *testing.T) {
 
 func TestJSON2Map(t *testing.T) {
 
-	jsn := struct {
-		Name interface{}
-		KD   interface{}
-	}{
-		Name: "Deepak",
-		KD:   12,
-	}
-
-	//// Get raw message
-	jsnByte, _ := json.Marshal(jsn)
-	jsnRaw := json.RawMessage(jsnByte)
-
 	type args struct {
 		rawMessage interface{}
 	}
@@ -1121,7 +1154,7 @@ func TestJSON2Map(t *testing.T) {
 		want want
 	}{
 		{
-			name: "For Nil",
+			name: "pass nil argument",
 			args: args{
 				rawMessage: nil,
 			},
@@ -1130,15 +1163,36 @@ func TestJSON2Map(t *testing.T) {
 			},
 		},
 		{
-			name: "Pass RawJson",
+			name: "pass correct raw json",
 			args: args{
-				rawMessage: jsnRaw,
+				rawMessage: json.RawMessage([]byte(`{"Name" : "Hubspot","KD" : 12}`)),
 			},
 			want: want{
 				output: map[string]interface{}{
-					"Name": "Deepak",
+					"Name": "Hubspot",
 					"KD":   float64(12),
 				},
+			},
+		},
+		{
+			name: "pass correct raw json second",
+			args: args{
+				rawMessage: json.RawMessage([]byte(`{"Name" : "Heymarket","Fees" : 123}`)),
+			},
+			want: want{
+				output: map[string]interface{}{
+					"Name": "Heymarket",
+					"Fees": float64(123),
+				},
+			},
+		},
+		{
+			name: "pass blank json with {}",
+			args: args{
+				rawMessage: json.RawMessage([]byte(`{}`)),
+			},
+			want: want{
+				output: map[string]interface{}{},
 			},
 		},
 	}
@@ -1159,7 +1213,7 @@ func TestUUID(t *testing.T) {
 		name string
 	}{
 		{
-			name: "Should Return Random Value That Is Not Equal To Nil",
+			name: "should return random value that is not equal to nil",
 		},
 	}
 
@@ -1171,11 +1225,6 @@ func TestUUID(t *testing.T) {
 }
 
 func TestReadAll(t *testing.T) {
-
-	jsonBodyForRequest := string(`{"Name" : "Heymarket","Fees" : 123,}`)
-
-	// To get io.ReadCloser of jsonBodyForRequest
-	closer := NopCloser([]byte(jsonBodyForRequest))
 
 	type args struct {
 		req io.ReadCloser
@@ -1190,9 +1239,9 @@ func TestReadAll(t *testing.T) {
 		want want
 	}{
 		{
-			name: "Correct input",
+			name: "simple input of io.ReadCloser type",
 			args: args{
-				req: closer,
+				req: NopCloser([]byte(`{"Name" : "Heymarket","Fees" : 123,}`)), // To get io.ReadCloser of jsonBodyForRequest
 			},
 			want: want{
 				output: []byte(`{"Name" : "Heymarket","Fees" : 123,}`),
@@ -1342,7 +1391,7 @@ func TestConvertMap(t *testing.T) {
 		want want
 	}{
 		{
-			name: "pass an interface value with correct value",
+			name: "pass an interface value which holding values in map",
 			args: args{
 				v: interface{}(map[string]interface{}{
 					"Name":   "Heymarket",
