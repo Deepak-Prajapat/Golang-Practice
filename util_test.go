@@ -284,7 +284,6 @@ func TestShowPhone(t *testing.T) {
 	type want struct {
 		output bool
 	}
-
 	testCases := []struct {
 		name string
 		args args
@@ -1324,6 +1323,57 @@ func TestFloat64(t *testing.T) {
 			assert.Equal(t, tc.want.output, output)
 			assert.Equal(t, fmt.Sprintf("%T", tc.want.output), "float64")
 			assert.NotNil(t, output)
+		})
+	}
+}
+
+func TestConvertMap(t *testing.T) {
+	type args struct {
+		v interface{}
+	}
+	type want struct {
+		output     map[string]interface{}
+		outputType string
+	}
+
+	testCases := []struct {
+		name string
+		args args
+		want want
+	}{
+		{
+			name: "pass an interface value with correct value",
+			args: args{
+				v: interface{}(map[string]interface{}{
+					"Name":   "Heymarket",
+					"Rating": 4.5,
+				}),
+			},
+			want: want{
+				output: map[string]interface{}{
+					"Name":   "Heymarket",
+					"Rating": 4.5,
+				},
+				outputType: "map[string]interface {}",
+			},
+		},
+		{
+			name: "for blank interface in input",
+			args: args{
+				v: interface{}(nil),
+			},
+			want: want{
+				output:     nil,
+				outputType: "map[string]interface {}",
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			output := ConvertMap(tc.args.v)
+			assert.Equal(t, tc.want.output, output)
+			assert.Equal(t, tc.want.outputType, fmt.Sprintf("%T", output))
 		})
 	}
 }
