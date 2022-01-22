@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/pkg/errors"
+	"time"
 )
 
 func main() {
@@ -18,8 +19,11 @@ func main() {
 	Print(matrixTwo)
 
 	//Print(Addition(matrixOne, num))
-
+	start := time.Now().Nanosecond()
+	time.Sleep(100 * time.Nanosecond)
 	m, err := MatrixMultiplication(matrixOne, matrixTwo)
+	end := time.Now().Nanosecond()
+	fmt.Println("time taken:", end-start)
 	if err != nil {
 		print("\nSigma Rule #1001 ", err.Error())
 		print("\n`````````````````\n")
@@ -52,7 +56,7 @@ func MatrixMultiply(matrixOne [][]int, matrixTwo [][]int, row int, col int, outp
 	rowItems := GetRowItems(matrixOne, row)
 	colItems := GetColItems(matrixTwo, col)
 
-	var itemOnPosition int = 0
+	itemOnPosition := 0
 	for i := 0; i < len(colItems); i++ {
 		itemOnPosition += rowItems[i] * colItems[i]
 	}
@@ -123,7 +127,7 @@ func TakeInput() ([][]int, [][]int) {
 	for i := 1; i <= rowCount; i++ {
 		for j := 1; j <= colCount; j++ {
 			fmt.Print("Enter item for position [", i, ",", j, "] = ")
-			fmt.Scanln(&matrixOne[i-1][j-1])
+			_, _ = fmt.Scanln(&matrixOne[i-1][j-1])
 		}
 	}
 
@@ -144,7 +148,7 @@ func TakeInput() ([][]int, [][]int) {
 	for i := 1; i <= rowCount; i++ {
 		for j := 1; j <= colCount; j++ {
 			fmt.Print("Enter item for position [", i, ",", j, "] = ")
-			fmt.Scanln(&matrixTwo[i-1][j-1])
+			_, _ = fmt.Scanln(&matrixTwo[i-1][j-1])
 		}
 	}
 
