@@ -103,11 +103,17 @@ func TakeInput() ([][]int, [][]int) {
 	fmt.Println("``````````````````````````````````````````")
 	var rowCount int
 	fmt.Print("How many rows you want in first matrix = ")
-	fmt.Scanln(&rowCount)
+	_, err := fmt.Scanln(&rowCount)
+	if err != nil {
+		return nil, nil
+	}
 
 	var colCount int
 	fmt.Print("How many columns you want in first matrix = ")
-	fmt.Scanln(&colCount)
+	_, err = fmt.Scanln(&colCount)
+	if err != nil {
+		return nil, nil
+	}
 
 	matrixOne := make([][]int, rowCount)
 	for i := range matrixOne {
