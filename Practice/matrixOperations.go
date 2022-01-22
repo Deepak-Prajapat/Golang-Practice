@@ -9,59 +9,37 @@ func main() {
 	// To clear previous output of terminal
 	print("\033[H\033[2J")
 
-	// 5 * 5 matrixOne
-	matrixOne := make([][]int, 3)
-	for i := range matrixOne {
-		matrixOne[i] = make([]int, 3)
-	}
+	matrixOne, matrixTwo := TakeInput()
 
-	var count int = 1
-
-	for i := 0; i < len(matrixOne); i++ {
-		for j := 0; j < len(matrixOne); j++ {
-			matrixOne[i][j] = count
-			count++
-		}
-	}
-
-	matrixTwo := make([][]int, 3)
-	for i := range matrixTwo {
-		matrixTwo[i] = make([]int, 3)
-	}
-
-	for i := 0; i < len(matrixTwo); i++ {
-		for j := 0; j < len(matrixTwo); j++ {
-			matrixTwo[i][j] = count
-			count++
-		}
-	}
-
+	print("\033[H\033[2J")
+	fmt.Println("First Matrix\n````````````````")
 	Print(matrixOne)
-	fmt.Println("__________--------")
+	fmt.Println("\nSecond Matrix\n`````````````````")
 	Print(matrixTwo)
-	fmt.Println("__________---------")
 
 	//Print(Addition(matrixOne, num))
 
 	m, err := MatrixMultiplication(matrixOne, matrixTwo)
 	if err != nil {
-		print("error: ", err.Error())
+		print("\nSigma Rule #1001 ", err.Error())
+		print("\n`````````````````\n")
 		return
 	}
+	fmt.Println("\nMultiplication Result\n```````````````````````")
 	Print(m)
 }
 
 func MatrixMultiplication(matrixOne [][]int, matrixTwo [][]int) ([][]int, error) {
 	//Case where we cannot do multiplication on two matrix
-	if len(matrixOne) != len(matrixTwo[0]) {
-		return nil, errors.New(`first matrix's columns should be equual to second matrix's row`)
+	if len(matrixOne[0]) != len(matrixTwo) {
+		return nil, errors.New(`first matrix's columns should be equal to second matrix's row`)
 	}
 
 	row := 0
 	col := 0
-	outputMatrix := make([][]int, 3)
+	outputMatrix := make([][]int, len(matrixOne))
 	for i := range outputMatrix {
-		outputMatrix[i] = make([]int, 3)
+		outputMatrix[i] = make([]int, len(matrixTwo[0]))
 	}
 	return MatrixMultiply(matrixOne, matrixTwo, row, col, &outputMatrix)
 }
@@ -91,7 +69,7 @@ func MatrixMultiply(matrixOne [][]int, matrixTwo [][]int, row int, col int, outp
 
 func Print(matrix [][]int) {
 	for i := 0; i < len(matrix); i++ {
-		for j := 0; j < len(matrix); j++ {
+		for j := 0; j < len(matrix[0]); j++ {
 			print(matrix[i][j], "\t")
 		}
 		println()
@@ -118,4 +96,51 @@ func GetColItems(matrix [][]int, col int) []int {
 		}
 	}
 	return slc
+}
+
+func TakeInput() ([][]int, [][]int) {
+	fmt.Println("Enter Rows and Columns For First Matrix")
+	fmt.Println("``````````````````````````````````````````")
+	var rowCount int
+	fmt.Print("How many rows you want in first matrix = ")
+	fmt.Scanln(&rowCount)
+
+	var colCount int
+	fmt.Print("How many columns you want in first matrix = ")
+	fmt.Scanln(&colCount)
+
+	matrixOne := make([][]int, rowCount)
+	for i := range matrixOne {
+		matrixOne[i] = make([]int, colCount)
+	}
+
+	for i := 1; i <= rowCount; i++ {
+		for j := 1; j <= colCount; j++ {
+			fmt.Print("Enter item for position [", i, ",", j, "] = ")
+			fmt.Scanln(&matrixOne[i-1][j-1])
+		}
+	}
+
+	//For Second Matrix
+	fmt.Println("\n\nEnter Rows and Columns For Second Matrix")
+	fmt.Println("`````````````````````````````````````````")
+	fmt.Print("How many rows you want in Second matrix = ")
+	fmt.Scanln(&rowCount)
+
+	fmt.Print("How many columns you want in Second matrix = ")
+	fmt.Scanln(&colCount)
+
+	matrixTwo := make([][]int, rowCount)
+	for i := range matrixTwo {
+		matrixTwo[i] = make([]int, colCount)
+	}
+
+	for i := 1; i <= rowCount; i++ {
+		for j := 1; j <= colCount; j++ {
+			fmt.Print("Enter item for position [", i, ",", j, "] = ")
+			fmt.Scanln(&matrixTwo[i-1][j-1])
+		}
+	}
+
+	return matrixOne, matrixTwo
 }
