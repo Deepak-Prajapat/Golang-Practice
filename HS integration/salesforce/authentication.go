@@ -13,7 +13,7 @@ type Authentication struct {
 
 func AuthorizationToken() *Authentication {
 	conf := getSfConfig()
-	sfapi := &api.SfAuthentication{Config: &api.SFConfig{
+	sfAuth := &api.SfAuthentication{Config: &api.SFConfig{
 		ClientID:      conf.ClientID,
 		ClientSecret:  conf.ClientSecret,
 		GrantType:     conf.GrantType,
@@ -22,7 +22,7 @@ func AuthorizationToken() *Authentication {
 		Username:      conf.Username,
 	}}
 
-	response, err := sfapi.Request().Send()
+	response, err := sfAuth.Request().Send()
 	if err != nil {
 		return nil
 	}
