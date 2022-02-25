@@ -55,7 +55,6 @@ func CreateContact(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	apiKey := r.Form.Get("hapikey")
 	if u.IsBlank(apiKey) {
-		//w.Write([]byte("please provide an api"))
 		u.R.Text(w, http.StatusBadGateway, "api key is missing")
 
 		return
