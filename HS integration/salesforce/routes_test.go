@@ -122,7 +122,7 @@ func TestGetAccountInfo(t *testing.T) {
 		},
 	}
 
-	api.RequestService = new(mockRequest)
+	api.RequestService = new(mockRequest) //enable mocking of request.Send
 	for _, tt := range tests {
 		responseType = tt.resType
 		sfAuthorized = false
