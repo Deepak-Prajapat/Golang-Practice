@@ -1,0 +1,41 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - Bearer 00D5j000008wf2G!AQ8AQEcznidw6ZZlJ4ETmPedmphbxkXjPBsU8t8O4kF8mN3RgSaie1Q228V.2jGmg0OAlOLEdl.ViHqlAUz7sG10yCb2QABv
+      Content-Type:
+      - application/json
+    url: https://concretio89-dev-ed.my.salesforce.com/services/apexrest/Account?id=0015j00000XjYbQAAV
+    method: GET
+  response:
+    body: '{"attributes":{"type":"Account","url":"/services/data/v54.0/sobjects/Account/0015j00000XjYbQAAV"},"Id":"0015j00000XjYbQAAV","Name":"Testing","Type":"Raghav"}'
+    headers:
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 24 Feb 2022 10:51:15 GMT
+      Set-Cookie:
+      - CookieConsentPolicy=0:1; path=/; expires=Fri, 24-Feb-2023 10:51:15 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; path=/; expires=Fri, 24-Feb-2023 10:51:15
+        GMT; Max-Age=31536000
+      - BrowserId=sITWWpVfEeyp29lx___LWA; domain=.salesforce.com; path=/; expires=Fri,
+        24-Feb-2023 10:51:15 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Robots-Tag:
+      - none
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
