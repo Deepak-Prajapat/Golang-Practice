@@ -1,0 +1,41 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: https://login.salesforce.com/services/oauth2/token?grant_type=password&client_id=3MVG9pRzvMkjMb6kDmaqfQNHc1l4BirqlwI4LccPebZ99s.xkiwceaoGm9ynZOIf2cZw3u3cFP3pdjJkVsoxR&client_secret=A0E7E4128AC06CEFB0D7F34BC7CD4ACCC3125F688A638CA1A81FCF8F5B7FCB0F&username=golang@concret.io&password=gopractice1ISv9Qophfz2JWOu67ojDofou
+    method: POST
+  response:
+    body: '{"access_token":"00D5j000008wf2G!AQ8AQEcznidw6ZZlJ4ETmPedmphbxkXjPBsU8t8O4kF8mN3RgSaie1Q228V.2jGmg0OAlOLEdl.ViHqlAUz7sG10yCb2QABv","instance_url":"https://concretio89-dev-ed.my.salesforce.com","id":"https://login.salesforce.com/id/00D5j000008wf2GEAQ/0055j000004ll3KAAQ","token_type":"Bearer","issued_at":"1645707684879","signature":"IRgZ1riX9IPFT2MqWYD7JRoImUj8cxw6vhlgHilSOZk="}'
+    headers:
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 24 Feb 2022 13:01:24 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - CookieConsentPolicy=0:0; path=/; expires=Fri, 24-Feb-2023 13:01:24 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:0; path=/; expires=Fri, 24-Feb-2023 13:01:24
+        GMT; Max-Age=31536000
+      - BrowserId=3wSn2ZVxEeyXfvvnJDbueQ; domain=.salesforce.com; path=/; expires=Fri,
+        24-Feb-2023 13:01:24 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Readonlymode:
+      - "false"
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

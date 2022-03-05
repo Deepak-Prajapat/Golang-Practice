@@ -1,0 +1,42 @@
+---
+version: 1
+interactions:
+- request:
+    body: "{\n\t\t\t\t\t\t\t\t\"id\" : \"0015j00000XjYbQA\",\n\t\t\t\t\t\t\t\t\"Name\"
+      : \"Name updated in test method\"\n\t\t\t\t\t\t\t}"
+    form: {}
+    headers:
+      Authorization:
+      - Bearer 00D5j000008wf2G!AQ8AQEcznidw6ZZlJ4ETmPedmphbxkXjPBsU8t8O4kF8mN3RgSaie1Q228V.2jGmg0OAlOLEdl.ViHqlAUz7sG10yCb2QABv
+      Content-Type:
+      - application/json
+    url: https://concretio89-dev-ed.my.salesforce.com/services/apexrest/Account
+    method: PUT
+  response:
+    body: '[{"errorCode":"APEX_ERROR","message":"AccountManager.BaseException: Error
+      while updating the record\n\nClass.AccountManager.doUpdate: line 36, column
+      1"}]'
+    headers:
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 24 Feb 2022 11:37:17 GMT
+      Set-Cookie:
+      - CookieConsentPolicy=0:1; path=/; expires=Fri, 24-Feb-2023 11:37:17 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; path=/; expires=Fri, 24-Feb-2023 11:37:17
+        GMT; Max-Age=31536000
+      - BrowserId=HqFpGZVmEey0E988EKkmVQ; domain=.salesforce.com; path=/; expires=Fri,
+        24-Feb-2023 11:37:17 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Robots-Tag:
+      - none
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 500 Server Error
+    code: 500
+    duration: ""

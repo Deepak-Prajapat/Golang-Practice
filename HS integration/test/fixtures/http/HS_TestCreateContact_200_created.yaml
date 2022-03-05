@@ -1,0 +1,104 @@
+---
+version: 1
+interactions:
+- request:
+    body: |-
+      {
+        "properties": [
+          {
+            "property": "email",
+            "value": "freshcontact2@gmail.com"
+          },
+          {
+            "property": "firstname",
+            "value": "Boy"
+          },
+          {
+            "property": "lastname",
+            "value": "Day"
+          },
+          {
+            "property": "website",
+            "value": "http://hubspot.com"
+          },
+          {
+            "property": "company",
+            "value": "HubSpot"
+          },
+          {
+            "property": "phone",
+            "value": "9765321987"
+          },
+          {
+            "property": "address",
+            "value": "25 First Street"
+          },
+          {
+            "property": "city",
+            "value": "Ajmer"
+          },
+          {
+            "property": "state",
+            "value": "MA"
+          },
+          {
+            "property": "zip",
+            "value": "02139"
+          }
+        ]
+      }
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: https://api.hubapi.com/contacts/v1/contact?hapikey=1a213976-e94b-4906-9ddd-6bef32c22728
+    method: POST
+  response:
+    body: '{"vid":1251,"canonical-vid":1251,"merged-vids":[],"portal-id":21427615,"is-contact":true,"properties":{"zip":{"value":"02139","versions":[{"value":"02139","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"website":{"value":"http://hubspot.com","versions":[{"value":"http://hubspot.com","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"firstname":{"value":"Boy","versions":[{"value":"Boy","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"address":{"value":"25
+      First Street","versions":[{"value":"25 First Street","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"city":{"value":"Ajmer","versions":[{"value":"Ajmer","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"phone":{"value":"9765321987","versions":[{"value":"9765321987","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"company":{"value":"HubSpot","versions":[{"value":"HubSpot","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"state":{"value":"MA","versions":[{"value":"MA","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"email":{"value":"freshcontact2@gmail.com","versions":[{"value":"freshcontact2@gmail.com","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]},"lastname":{"value":"Day","versions":[{"value":"Day","source-type":"API","source-id":null,"source-label":null,"updated-by-user-id":null,"timestamp":1645705771241,"selected":false}]}},"form-submissions":[],"list-memberships":[],"identity-profiles":[{"vid":1251,"is-deleted":false,"is-contact":false,"pointer-vid":0,"previous-vid":0,"linked-vids":[],"saved-at-timestamp":0,"deleted-changed-timestamp":0,"identities":[{"type":"EMAIL","value":"freshcontact2@gmail.com","timestamp":1645705771247,"is-primary":true,"source":"UNSPECIFIED"},{"type":"LEAD_GUID","value":"1b38af99-1c95-4a05-a52c-3d7d5be096d5","timestamp":1645705771332,"source":"UNSPECIFIED"}]}],"merge-audits":[]}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - "false"
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Ray:
+      - 6e28b32ceb16d557-DEL
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Thu, 24 Feb 2022 12:29:31 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Nel:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=FF3M9jFxxu%2BzIvwQbTCF9ksAUqf4d6fDu8LpVOorBIsuyNHmhR0g6o4LTqX0z9WsNeSvz62EDJ355G3vetB5zW33BUtIbsjU87hKkFT19Y2ZH8XW5mVbqRf8XlEZtP9HBttGW1Ejl2sq9SOi"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Accept-Encoding
+      X-Hubspot-Correlation-Id:
+      - 7027696d-4442-4640-a97e-313e667ced6d
+      X-Hubspot-Ratelimit-Daily:
+      - "250000"
+      X-Hubspot-Ratelimit-Daily-Remaining:
+      - "249990"
+      X-Hubspot-Ratelimit-Interval-Milliseconds:
+      - "10000"
+      X-Hubspot-Ratelimit-Max:
+      - "100"
+      X-Hubspot-Ratelimit-Remaining:
+      - "99"
+      X-Hubspot-Ratelimit-Secondly:
+      - "10"
+      X-Hubspot-Ratelimit-Secondly-Remaining:
+      - "9"
+      X-Trace:
+      - 2B4E04F42CD73F8416F13F9CF1F39DB34AFC1CBAD8000000000000000000
+    status: 200 OK
+    code: 200
+    duration: ""

@@ -1,0 +1,106 @@
+---
+version: 1
+interactions:
+- request:
+    body: |-
+      {
+        "properties": [
+          {
+            "property": "email",
+            "value": "New@gmail.com"
+          },
+          {
+            "property": "firstname",
+            "value": "Black"
+          },
+          {
+            "property": "lastname",
+            "value": "Day"
+          },
+          {
+            "property": "website",
+            "value": "http://hubspot.com"
+          },
+          {
+            "property": "company",
+            "value": "HubSpot"
+          },
+          {
+            "property": "phone",
+            "value": "9765321987"
+          },
+          {
+            "property": "address",
+            "value": "25 First Street"
+          },
+          {
+            "property": "city",
+            "value": "Ajmer"
+          },
+          {
+            "property": "state",
+            "value": "MA"
+          },
+          {
+            "property": "zip",
+            "value": "02139"
+          }
+        ]
+      }
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: https://api.hubapi.com/contacts/v1/contact?hapikey=1a213976-e94b-4906-9ddd-6bef32c22728
+    method: POST
+  response:
+    body: '{"message":"Contact already exists","identityProfile":{"vid":351,"identity":[{"value":"new@gmail.com","type":"EMAIL","timestamp":1644842607313,"isPrimary":true},{"value":"db05eca0-8eb9-40fb-a781-0a44552dcbd4","type":"LEAD_GUID","timestamp":1644842607359}],"linkedVid":[],"isContact":true,"savedAtTimestamp":1644842607365},"errors":[{"message":"A
+      contact with email new@gmail.com already exists.","in":"email"}],"status":"error","correlationId":"6178b51a-4e58-41cf-901d-1e91534ec0ee","category":"OBJECT_ALREADY_EXISTS","error":"CONTACT_EXISTS"}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - "false"
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Ray:
+      - 6e28a0404c5f963e-DEL
+      Content-Length:
+      - "543"
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Thu, 24 Feb 2022 12:16:36 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Nel:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2F03%2Fd9ToS3%2BJqh4sE5EVE%2FFS7%2BwMG%2B2mNul7q7JwvYVjYJyW3tqLAiAsfNJ2NfsfqMGQNoM2DNemvPmXDyYsxfFjHZbzM6UyMW0cJbCKb%2BM03wZ%2BNs7aNShbXaMmEOqGtgMqGcDeNUy3xIcv"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Accept-Encoding
+      X-Hubspot-Correlation-Id:
+      - 6178b51a-4e58-41cf-901d-1e91534ec0ee
+      X-Hubspot-Ratelimit-Daily:
+      - "250000"
+      X-Hubspot-Ratelimit-Daily-Remaining:
+      - "249993"
+      X-Hubspot-Ratelimit-Interval-Milliseconds:
+      - "10000"
+      X-Hubspot-Ratelimit-Max:
+      - "100"
+      X-Hubspot-Ratelimit-Remaining:
+      - "99"
+      X-Hubspot-Ratelimit-Secondly:
+      - "10"
+      X-Hubspot-Ratelimit-Secondly-Remaining:
+      - "9"
+      X-Trace:
+      - 2B4026AF47C4D5CF2DC77A7EBF17BD401F1D7C61A2000000000000000000
+    status: 409 Conflict
+    code: 409
+    duration: ""
